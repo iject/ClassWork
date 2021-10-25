@@ -1,0 +1,52 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+void print_array(int array[], const int size)
+{
+	cout << "Массив размера " << size << ": " << "\n";
+	for (int i = 0; i < size; i++)
+	{
+		cout << "array[" << i << "] = " << array[i] << "\n";
+	}
+}
+
+void rand_array(int array[], const int size)
+{
+	srand(time(0));
+
+	for (int i = 0; i < size; i++)
+	{
+		array[i] = rand() % 101;
+	}
+}
+
+int main()
+{
+	setlocale(LC_ALL, "Rus");
+
+	const int n = 10;
+	int array[n];
+	int min, c;
+
+	rand_array(array, n);
+
+	for (int i = 0; i < n; i++)
+	{
+		min = i;
+		for (int j = i + 1; j < n; j++)
+		{
+			if (array[j] % 10 < array[min] % 10)
+			{
+				min = j;
+			}
+		}
+		c = array[i];
+		array[i] = array[min];
+		array[min] = c;
+	}
+
+	print_array(array, n);
+}
