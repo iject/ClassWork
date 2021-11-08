@@ -1,0 +1,91 @@
+    #include <iostream>
+using namespace std;
+
+void rand_mas(int* a,int n)
+{
+    srand(time(0));
+    for (int i = 0; i < n; i++)
+    {
+        a[i] = rand() % 10 + 1;
+    }
+}
+
+void print_mas(int* a, int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        cout << "[" << i << "] ";
+    }
+    cout << endl << " ";
+    for (int i = 0; i < n; i++)
+    {
+        cout << a[i] << "   ";
+    }
+    cout << endl;
+}
+
+void move_left(int* a, int begin, int end)
+{
+    int tmp = a[begin];
+    for (int i = begin; i < end; i++)
+    {
+        a[i] = a[i + 1];
+    }
+    a[end] = tmp;
+}
+
+void move_right(int* a, int begin, int end)
+{
+    int tmp = a[end];
+    for (int i = end; i < begin; i--)
+    {
+        a[i] = a[i - 1];
+    }
+    a[begin] = tmp;
+}
+
+void qsort_Hoar()
+{
+    if (begin == end) return;
+    qsort
+}
+
+void qsort(int* a, int n)
+{
+    int mid = n / 2;
+    for (int i = 0; i < n; i++)
+    {
+        if (a[i] > a[mid] && i < mid)
+        {
+            move_left(a, i, mid);
+            mid--;
+            i--;
+        }
+
+        if (a[i] < a[mid] && i > mid)
+        {
+            move_right(a, mid, i);
+            mid++;
+        }
+    }
+}
+
+
+
+int main()
+{
+    int n;
+    cout << "input n\n";
+    cin >> n;
+    int* a = new int[n];
+
+    rand_mas(a, n);
+
+    print_mas(a, n);
+
+    qsort(a, n);
+
+    print_mas(a, n);
+
+    delete[] a;
+}
