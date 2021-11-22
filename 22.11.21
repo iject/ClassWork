@@ -1,0 +1,49 @@
+#include <iostream>
+#include "windows.h"
+#include <string.h>
+using namespace std;
+
+int main()
+{
+	setlocale(LC_ALL, "Rus");
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+	//char q[10];
+	//int i = 0;
+	////scanf_s("%s", q, 10);
+	//cin.get(q, 10);
+	////cin.get(q, 10);
+	////cin.getline(q, 10);
+	//while (q[i] != '\0')
+	//{
+	//	if (q[i] == 'а')
+	//	{
+	//		q[i] = 'б';
+	//	}
+	//	i++;
+	//}
+	//printf("%s", q);
+	//cout << int('B');
+
+	// 2 task
+
+	/*string s;
+	cout << "Введите строку";
+	cin >> s;
+
+	string pswrd;
+	cout << "Введите пароль";
+	cin >> pswrd;*/
+
+	// 3 task
+
+	int i = 89;
+	char s[90];
+	cin >> s;
+	while(s[i] != '.')
+	{
+		i--;
+	}
+
+
+}
