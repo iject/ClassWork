@@ -1,0 +1,199 @@
+#include <iostream>
+#include <cmath>
+#include <ctime>
+#include <cstdlib>
+
+using namespace std;
+
+void rand_mas(int* mas[], int n, int m)
+{
+	srand(time(0));
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			mas[i][j] = rand() % 100 - 49;
+		}
+	}
+}
+
+void print_mas(int* mas[], int n, int m)
+{
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			cout << mas[i][j] << '\t';
+		}
+		cout << "\n";
+	}
+		cout << "\n";
+}
+
+void max_elem(int** mas, int n, int m)
+{
+	int max_i = 0, max_j = 0;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			if (mas[i][j] > mas[max_i][max_j])
+			{
+				max_i = i;
+				max_j = j;
+			}
+		}
+	}
+
+	cout << "Максимальный эл-т: " << mas[max_i][max_j] << "(" << max_i << ", " << max_j << ")\n";
+}
+
+void min_elem(int** mas, int n, int m)
+{
+	int min_i = 0, min_j = 0;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			if (mas[i][j] < mas[min_i][min_j])
+			{
+				min_i = i;
+				min_j = j;
+			}
+		}
+	}
+
+	cout << "Минимальный эл-т: " << mas[min_i][min_j] << "(" << min_i << ", " << min_j << ")\n";
+}
+
+int sum_str(int** mas, int n, int m)
+{
+	int sum = 0;
+	for (int j = 0; j < m; j++)
+	{
+		sum += mas[n][j];
+	}
+
+	return sum;
+}
+
+void max_sum_str(int** mas, int n, int m)
+{
+	int max_i = 0, max_sum = sum_str(mas, 0, m);
+	for (int i = 0; i < n; i++)
+	{
+		if (sum_str(mas, i, m) > max_sum)
+		{
+			max_sum = sum_str(mas, i, m);
+			max_i = i;
+		}
+	}
+
+	cout << "Максимальная сумма строки: " << max_sum << "(" << max_i << ")\n";
+}
+
+void min_sum_str(int** mas, int n, int m)
+{
+	int min_i = 0, min_sum = sum_str(mas, 0, m);
+	for (int i = 0; i < n; i++)
+	{
+		if (sum_str(mas, i, m) < min_sum)
+		{
+			min_sum = sum_str(mas, i, m);
+			min_i = i;
+		}
+	}
+
+	cout << "Минимальная сумма строки: " << min_sum << "(" << min_i << ")\n";
+}
+
+void snake_1(int** mas, int n, int m)
+{
+	cout << "Змейка 1\n";
+	int end_el = 0;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			end_el += 1;
+			mas[i][j] = end_el;
+		}
+	}
+}
+
+void snake_2(int** mas, int n, int m)
+{
+	cout << "Змейка 2\n";
+	int end_el = 0;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			end_el += 1;
+			if (i % 2 == 0)
+			{
+				mas[i][j] = end_el;
+			}
+			else
+			{
+				mas[i][m-j-1] = end_el;
+			}
+		}
+	}
+}
+
+void snake_3(int** mas, int n, int m)
+{
+	cout << "Змейка 3\n";
+	int end_el = 0;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			end_el += 1;
+			if (i % 2 == 0)
+			{
+				mas[i][j] = end_el;
+			}
+			else
+			{
+				mas[i][m-j-1] = end_el;
+			}
+		}
+	}
+}
+
+int main()
+{
+	setlocale(LC_ALL, "Rus");
+	int n, m;
+	cin >> n >> m;
+	int** mas = new int* [n];
+	for (int i = 0; i < n; i++)
+	{
+		mas[i] = new int[m];
+	}
+
+	rand_mas(mas, n, m);
+	print_mas(mas, n, m);
+
+	max_elem(mas, n, m);
+	min_elem(mas, n, m);
+
+	cout << endl;
+
+	max_sum_str(mas, n, m);
+	min_sum_str(mas, n, m);
+
+	cout << endl;
+
+	snake_1(mas, n, m);
+	print_mas(mas, n, m);
+	
+	cout << endl;
+
+	snake_2(mas, n, m);
+	print_mas(mas, n, m);
+
+	delete []mas;
+}
