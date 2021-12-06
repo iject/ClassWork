@@ -1,0 +1,51 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+	setlocale(LC_ALL, "Rus");
+	ifstream fin("input.txt");
+	if (fin.is_open() == NULL)
+	{
+		cout << "error";
+		return -1;
+	}
+
+	string s = " короче, ", new_str = "";
+	char c;
+	int count = 0, n = 0;
+
+	while (!fin.eof())
+	{
+		fin >> c;
+		new_str += c;
+		if (s.find(c) != -1)
+		{
+			count += 1;
+		}
+		else
+		{
+			count = 0;
+		}
+		if (count = s.length() - 1)
+		{
+			delete_s();
+		}
+	}
+	
+	fin.close();
+
+	fstream fout("input.txt");
+	if (fout.is_open() == NULL)
+	{
+		cout << "error";
+		return -1;
+	}
+
+	//fout.seekg(0, ios_base::end);
+	fout << 100;
+	fout.close();
+}
