@@ -1,0 +1,87 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+void sort(int mas[], int n)
+    {
+        int temp, flag = 1;
+        while (flag)
+        {
+            flag = 0;
+            for (int i = 0; i < n - 1; i++)
+            {
+                if (mas[i] % 10 < mas[i + 1] % 10)
+                {
+                    temp = mas[i];
+                    mas[i] = mas[i + 1];
+                    mas[i + 1] = temp;
+                    flag = 1;
+                }
+            }
+        }
+    }
+
+int main()
+{
+    ifstream inf("input.txt"); 
+    ofstream outf("output.txt");
+
+    /*if (!inf.is_open())
+    {
+        cout << "error";
+        return -1;
+    }
+
+    int count = 0, sum = 0;
+    int max = INT_MIN, min = INT_MAX;
+    while (!inf.eof())
+    {
+        int x;
+        inf >> x;
+        sum += x;
+        count++;
+        if (x > max) { max = x; }
+        if (x < min) { min = x; }
+        
+    }
+    outf << max << endl << min << endl;
+    outf << 1.0 * sum/count;*/
+
+    if (!inf.is_open())
+    {
+        cout << "error";
+        return -1;
+    }
+
+    int n = 0;
+    int k;
+
+    while (!inf.eof())
+    {
+        n++;
+        inf >> k;
+    }
+   
+    cout << "n = " << n << endl;
+
+    int* mas = new int[n]; 
+    int x;
+
+    inf.seekg(0, ios_base::beg);
+
+    for (int i = 0; i < n; i++)
+    {
+        inf >> mas[i];
+    }
+
+    sort(mas, n);
+
+    for (int i = 0; i < n; i++)
+    {
+        outf << mas[i] << endl;
+    }
+
+    outf.close();
+    inf.close();
+}
